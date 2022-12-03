@@ -12,8 +12,8 @@
     <div class="card">
         <h1>Log In</h1>
         <div class="inputs">
-            <input type="text" name="" id="txtUsername" placeholder="Username">
-            <input type="password" name="" id="txtPass" placeholder="Password">
+            <input type="text" name="" id="txtUsername" placeholder="Username" required>
+            <input type="password" name="" id="txtPass" placeholder="Password" required>
             <button id="btnLogin">Login</button>
         </div> 
     </div>
@@ -26,7 +26,12 @@
             username: username,
             password: password
         }).done(function(data) {
-            alert(data);
+            let response = JSON.parse(data);
+            if (response.result == "success") {
+                window.location = "index.php";
+            } else {
+                alert("Wrong Username or Password");
+            }
         });
     });
 </script>
