@@ -94,6 +94,7 @@ button#btnLogin:hover {
     min-width: 200px;
     background-color: white;
     border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px;
 }
 
 img {
@@ -139,8 +140,30 @@ img {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.btn-like {
+    content: url("https://scheday.site/imgs/heart.png");
+    /* height: 20px; */
+    width: 20px;
+    padding: 0!important;
+    display: flex;
+    margin: 0!important;
+    cursor: pointer;
+}
 
-@media all and (min-width: 600px) {
+.disabled {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
+.d-flex span {
+    margin-left: 10px;
+}
+
+.d-flex:has(span) {
+    padding: 0 15px;
+}
+
+@media all and (min-width: 602px) {
     .inputs {
         flex-wrap: nowrap;
     }

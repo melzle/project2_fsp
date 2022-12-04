@@ -29,10 +29,24 @@ session_start();
 <script>
     $(document).ready(function(){
         $.post("https://scheday.site/webservice/memews.php", {
-                
-            }).done(function(data) {
-                $("#memes").html(data);
-            });
+        }).done(function(data) {
+            $("#memes").html(data);
+        });
+    });
+
+    $("body").on("click", ".btn-like", function(e) {
+        let memeid = $(this).attr("m-id");
+        $.post("https://scheday.site/webservice/likews.php", {
+            memeid: memeid
+        }).done(function(data) {
+            var res = JSON.parse(data);
+            if (res.result == "success") {
+                alert("Successfully liked a meme");
+                location.href=location.href;
+            } else {
+                alert("Error liking meme");
+            }
+        });
     });
 </script>
 </html>

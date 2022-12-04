@@ -28,7 +28,9 @@ class meme extends parentClass {
         while($row = $res->fetch_assoc()) {
             $id = $row['idmemes'];
             $url = $row['imageurl'];
-            $memes .= "<div class='meme-card'><img src='$url' class='img'><div>Like<span></span></div></div>";
+            $btn = $this->checkLike('bam', $id);
+            $countLikes = $this->countLikes($id);
+            $memes .= "<div class='meme-card'><img src='$url' class='img'><div class='d-flex'>$btn<span>$countLikes</span></div></div>";
         }
         return $memes;
     }
@@ -47,25 +49,40 @@ class meme extends parentClass {
 
         $btnLike = "";
         if ($res->num_rows == 0) {
-            $btnLike = "";
+            $btnLike = "<div class='btn-like' m-id='$memeid'></div>";
         } else {
-            $btnLike = "";
+            $btnLike = "<div class='btn-like disabled'></div>";
         }
         return $btnLike;
     }
 
     public function countLikes($memeid)
     {
-        $sql = "SELECT COUNT(*) FROM likes WHERE memes_idmemes=?";
+        $sql = "SELECT COUNT(*) AS c FROM likes WHERE memes_idmemes=?";
         $stmt = $this->mysqli->prepare($sql);
         $stmt->bind_param("i", $memeid);
         $stmt->execute();
         $res = $stmt->get_result();
         $count = 0;
-        while ($row = $res->fetch_assoc()) {
-            $count = $row[0];
+        if ($res->num_rows>0) {
+            while ($row = $res->fetch_assoc()) {
+                $count = $row['c'];
+            }
         }
-        return $count;
+        $countStr = "&nbsp;Likes";
+        if ($count == 1) {
+            $countStr = "&nbsp;Like";
+        }
+        return $count.$countStr;
+    }
+
+    public function likeMeme($username, $memeid)
+    {
+        $sql = "INSERT INTO likes VALUES(?,?)";
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->bind_param("si", $username,$memeid);
+        $stmt->execute();
+        return $stmt->affected_rows;
     }
 }
 
