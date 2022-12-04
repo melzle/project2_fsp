@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../src/user.php");
 
 header("Access-Control-Allow-Origin: *");
@@ -12,6 +13,7 @@ $data = array();
 $res = $obj_user->login($username, $password);
 if ($res->num_rows > 0) {
     $arr = ["result" => "success", "data" => $username];
+    $_SESSION['username'] = $username;
 } else {
     $arr = ["result" => "error", "message" => "user not found or wrong password"];
 }

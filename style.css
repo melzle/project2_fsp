@@ -9,10 +9,22 @@
 body {
     background-color: #8EC5FC;
     background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    margin: 0;
+}
+
+.flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.vh-100 {
     height: 100vh;
+    margin: 0;
+}
+
+.d-flex {
+    display: flex;
 }
 
 .card {
@@ -20,7 +32,7 @@ body {
     padding: 2em 2em;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 30px;
     border-radius: 20px;
-    width: 70%;
+    width: 75%;
 }
 
 .card h1 {
@@ -50,7 +62,7 @@ input:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-button {
+button#btnLogin {
     background-color: #4cafac;
     border: 0;
     border-radius: 5px;
@@ -61,16 +73,98 @@ button {
     width: 100%;
 }
 
-button:hover {
+button#btnLogin:hover {
     transition: 0.5s ease;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.img {
+    max-width: 100%;
+}
+
+#memes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: space-evenly;
+}
+
+.meme-card {
+    width: 75%;
+    min-width: 200px;
+    background-color: white;
+    border-radius: 7px;
+}
+
+img {
+    border-radius: 7px 7px 0 0;
+}
+
+.container {
+    margin: 0 1em;
+    margin-top: 70px;
+}
+
+.meme-card div{
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+.nav {
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.nav div {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.nav div button {
+    background-color: #4cafac;
+    border: 0;
+    border-radius: 5px;
+    padding: 8px 12px;
+    transition: 0.5s ease;
+    color: white;
+    cursor: pointer;
+}
+
+.nav div button:hover {
+    transition: 0.5s ease;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 
 @media all and (min-width: 600px) {
     .inputs {
         flex-wrap: nowrap;
     }
-    button {
+    button#btnLogin {
         width: 50%;
+    }
+    .card {
+        width: 60%;
+    }
+    .container {
+        margin: 0 15%;
+        margin-top: 70px;
+    }
+    .meme-card {
+        width: 40%;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .meme-card {
+        width: 20%;
+    }
+    .container {
+        margin: 0 5em;
+        margin-top: 70px;
     }
 }
