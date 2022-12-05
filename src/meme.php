@@ -21,14 +21,14 @@ class meme extends parentClass {
         return $res;
     }
 
-    public function meme()
+    public function meme($username)
     {
         $memes = "";
         $res = $this->getMemes();
         while($row = $res->fetch_assoc()) {
             $id = $row['idmemes'];
             $url = $row['imageurl'];
-            $btn = $this->checkLike('bam', $id);
+            $btn = $this->checkLike($username, $id);
             $countLikes = $this->countLikes($id);
             $memes .= "<div class='meme-card'><img src='$url' class='img'><div class='d-flex'>$btn<span>$countLikes</span></div></div>";
         }

@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION['username'])) {
-//     header("location: https://scheday.site/login.php");
-// }
+if (!isset($_SESSION['username'])) {
+    header("location: https://scheday.site/login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@ session_start();
 <body>
     <div class="nav">
         <div>
+            <form action=""></form>
             <button id="btnLogout">Logout</button>
         </div>
     </div>
@@ -34,7 +35,7 @@ session_start();
         });
     });
 
-    $("body").on("click", ".btn-like", function(e) {
+    $("body").on("click", ".btn-like", function() {
         let memeid = $(this).attr("m-id");
         $.post("https://scheday.site/webservice/likews.php", {
             memeid: memeid
@@ -42,10 +43,16 @@ session_start();
             var res = JSON.parse(data);
             if (res.result == "success") {
                 alert("Successfully liked a meme");
-                location.href=location.href;
+                location.href = location.href;
             } else {
                 alert("Error liking meme");
             }
+        });
+    });
+
+    $("body").on("click", "#btnLogout", function(){
+        $.post("https://scheday.site/webservice/logoutws.php", {}).done(function(data){
+            window.location = "https://scheday.site/login.php";
         });
     });
 </script>
