@@ -45,7 +45,7 @@ if (!isset($_SESSION['username'])) {
                 alert("Successfully liked a meme");
                 location.href = location.href;
             } else {
-                alert("Error liking meme");
+                alert("Error. You've liked this meme already.");
             }
         });
     });

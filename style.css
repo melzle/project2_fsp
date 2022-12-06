@@ -141,9 +141,9 @@ img {
 }
 
 .btn-like {
-    content: url("https://scheday.site/imgs/heart.png");
+    content: url("https://scheday.site/imgs/love-02-01.png");
     /* height: 20px; */
-    width: 20px;
+    width: 18px;
     padding: 0!important;
     display: flex;
     margin: 0!important;
@@ -151,7 +151,12 @@ img {
 }
 
 .disabled {
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
+    content: url("https://scheday.site/imgs/love-01-01.png");
+    width: 18px;
+    padding: 0!important;
+    display: flex;
+    margin: 0!important;
     cursor: not-allowed;
 }
 
