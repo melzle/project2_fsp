@@ -14,27 +14,60 @@ class meme extends parentClass {
         }
         $stmt = $this->mysqli->prepare($sql);
         if (!is_null($offset)) {
-            $stmt->bind_param("ii", $limit, $offset);
+            $stmt->bind_param("ii", $offset, $limit);
         }
         $stmt->execute();
         $res = $stmt->get_result();
         return $res;
     }
 
-    public function meme($username)
+    public function meme($username, $limit, $offset)
     {
-        $memes = "";
-        $res = $this->getMemes();
+        $memes = "<div id='memes-container'>";
+        $res = $this->getMemes($limit, $offset);
         while($row = $res->fetch_assoc()) {
             $id = $row['idmemes'];
             $url = $row['imageurl'];
             $btn = $this->checkLike($username, $id);
             $countLikes = $this->countLikes($id);
-            $memes .= "<div class='meme-card'><img src='$url' class='img'><div class='d-flex'>$btn<span>$countLikes</span></div></div>";
+            $memes .= "<div class='meme-card'><img src='$url' class='img'><div class='d-flex'>$btn<span>$countLikes - (idmeme: $id)</span></div></div>";
         }
+        $memes .= "</div>";
+        $memes .= $this->getPaging($limit, $offset);
         return $memes;
     }
     
+    public function getPaging($limit, $offset)
+    {
+        $pagingStr = "";
+
+        $td = $this->getTotalData();
+        $max_page = ceil($td/$limit);
+        $prev = $offset-$limit;
+        $pagingStr .= "<div class='paging-container'>";
+
+        if ($prev >= 0) {
+            $pagingStr .= "<a href='#' class='paging' off='$prev'>&lt;</a>";
+        } 
+
+        for ($i = 1; $i <= $max_page; $i++) {
+            $off = ($i-1)*$limit;
+            if ($off == $offset) {
+                $pagingStr .= "<span class='active' off='$off'>$i</span>";
+
+            } else {
+                $pagingStr .= "<a href='#' class='paging' off='$off'>$i</a>";
+            }
+        }
+
+        $next = $offset+$limit;
+        if (($limit*$max_page > $next)) {
+            $pagingStr .= "<a href='#' class='paging' off='$next'>&gt;</a>";
+        }
+
+        return $pagingStr;
+    }
+
     public function getTotalData()
     {
         return $this->getMemes()->num_rows;

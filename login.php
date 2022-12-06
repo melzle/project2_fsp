@@ -7,6 +7,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link type="image/png" sizes="96x96" rel="icon" href="https://scheday.site/imgs/icons8-trollface-96.png">
 </head>
 <body class="flex-center vh-100">
     <div class="card">
