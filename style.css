@@ -217,7 +217,7 @@ img {
         margin-top: 70px;
     }
     .paging-container {
-        justify-content: end;
-        margin-right: 5em;
+        justify-content: start;
+        margin-left: 2.5em;
     }
 }
